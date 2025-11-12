@@ -1,15 +1,11 @@
-import React from 'react';
+import { LoginForm } from "@/components/login-form";
 
-const Login = () => {
+export default function Login() {
     return (
-        <div>
-            <h1>Login</h1>
-            <p>Please enter your credentials to log in.</p>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Submit</button>
+        <div className='flex min-h-svh w-full items-center justify-center p-6 md:p-10'>
+            <div className='w-full max-w-sm'>
+                <LoginForm />
+            </div>
         </div>
     );
-};
-
-export default Login;
+}

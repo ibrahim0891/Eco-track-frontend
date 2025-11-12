@@ -1,13 +1,17 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter, Navigate, useLocation } from "react-router";
  
-import Login from "../pages/auth/Login";  
-import AuthLayout from "../Layout/AuthLayout"; 
+import Login from "../pages/auth/Login";   
 import Challenges from "../pages/challanges/Challenges";
 import ChallengeDetails from "../pages/challanges/ChallengeDetails";
-import AddChallenges from "../pages/challanges/AddChallenges";
-import ForgetPassword from "../pages/auth/ForgetPassword";
+import AddChallenges from "../pages/challanges/AddChallenges"; 
 import useAuth from "../hooks/useAuth";
+import AuthLayout from "../layouts/AuthLayout";
+import RootLayout from "../layouts/RootLayout";
+import Register from "../pages/auth/Register";
+import Home from "../pages/home/Home";
+import ForgetPasswordPage from "../pages/auth/ForgetPassword";
+
 
 let AuthPageLoader = () => {
     return (
@@ -51,7 +55,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <div>Home Page</div>,
+                element:<Home />,
             },
             {
                 path: "/challenges",
@@ -89,7 +93,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "forgot-password",
-                element: <ForgetPassword />,
+                element: <ForgetPasswordPage />,
             },
         ],
     },

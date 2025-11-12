@@ -12,7 +12,7 @@ import {
 } from "firebase/auth";
 import { createContext,   useEffect, useState } from "react";
 import { auth } from "../config/firebase.config";
-import toast from "react-hot-toast";
+import toast from "react-hot-toast"; 
 
 const AuthContext = createContext();
 let googleProvider = new GoogleAuthProvider();
@@ -20,6 +20,8 @@ let AuthProvider = ({ children }) => {
     let [user, setUser] = useState(null);
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState(null);
+
+ 
     useEffect(() => {
         setLoading(true);
         let clearEffect = onAuthStateChanged(auth, (user) => {
@@ -36,13 +38,14 @@ let AuthProvider = ({ children }) => {
         loading,
         error,
         setError,
-        googleSignIn: () => {
+        googleSignIn: async () => {
             setLoading(true);
             signInWithPopup(auth, googleProvider)
                 .then((userCredentials) => {
                     toast.success(
                         `Welcome ${userCredentials.user.displayName}`
                     );
+                    
                     setUser(userCredentials.user);
                     setLoading(false);
                 })

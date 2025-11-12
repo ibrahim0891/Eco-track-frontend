@@ -1,16 +1,11 @@
-import React from 'react';
+import { SignupForm } from "@/components/signup-form";
 
-const Register = () => {
+export default function Register() {
     return (
-        <div>
-            <h1>Register</h1>
-            <p>Please fill in the details to create an account.</p>
-            <input type="text" placeholder="Username" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Submit</button>
+        <div className='flex min-h-svh w-full items-center justify-center p-6 md:p-10'>
+            <div className='w-full max-w-sm'>
+                <SignupForm />
+            </div>
         </div>
     );
-};
-
-export default Register;
+}

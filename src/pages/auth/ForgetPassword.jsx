@@ -1,14 +1,12 @@
-import React from "react";
+import { ForgetPassword } from "@/components/forget-password-form";
 
-const ForgetPassword = () => {
+ 
+export default function ForgetPasswordPage() {
     return (
-        <div>
-            <h1>Forgot Password</h1>
-            <p>Please enter your email address to reset your password.</p>
-            <input type='email' placeholder='Email' />
-            <button>Submit</button>
+        <div className='flex min-h-svh w-full items-center justify-center p-6 md:p-10'>
+            <div className='w-full max-w-sm'>
+                <ForgetPassword />
+            </div>
         </div>
     );
-};
-
-export default ForgetPassword;
+}
