@@ -22,23 +22,17 @@ let AuthPageLoader = () => {
 };
 
 const PublicRoute = ({ children }) => {
-    let { user, loading } = useAuth();
+    let { user } = useAuth();
     let { state } = useLocation();
-
-    if (loading) {
-        return <AuthPageLoader />;
-    }
+   
     return user ? <Navigate to={state ?? "/"} /> : children;
 };
 
 const PrivetRoute = ({ children }) => {
-    let { user, loading } = useAuth();
+    let { user } = useAuth();
     let { pathname } = useLocation();
 
-    if (loading) {
-        return <AuthPageLoader />;
-    }
-
+     
     return !user
         ? (function () {
               return <Navigate to={`/auth`} state={pathname} />;

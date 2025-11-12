@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router";
 import useAuth from "@/hooks/useAuth";
+import { useState } from "react";
+import { firebaseErrorMessages } from "@/constants/firebaseErrorMessages";
 
 export function LoginForm({ className, ...props }) {
     const auth = useAuth();
@@ -23,6 +25,19 @@ export function LoginForm({ className, ...props }) {
     const handleGoogleLogin = () => {
         auth.googleSignIn();
     };
+
+    const [email  , setEmail ] = useState()
+    const [password , setPassword] = useState() 
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if(!email || !password) {
+            return;
+        }
+        auth.login(email, password)
+        
+    }
+    
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -42,7 +57,8 @@ export function LoginForm({ className, ...props }) {
                                     id='email'
                                     type='email'
                                     placeholder='m@example.com'
-                                    required
+                                    required 
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </Field>
                             <Field>
@@ -57,13 +73,31 @@ export function LoginForm({ className, ...props }) {
                                         Forgot your password?
                                     </Link>
                                 </div>
-                                <Input id='password' type='password' required />
+                                <Input
+                                    id='password'
+                                    type='password'
+                                    required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
                             </Field>
+                            
+                            <p>
+                                {auth.error && (
+                                    <span className='text-sm text-red-600'>
+                                        {firebaseErrorMessages[auth.error?.code] ||
+                                            "An unexpected error occurred. Please try again."}
+                                    </span>
+                                )}
+                            </p>
+                                
                             <Field>
-                                <Button type='submit'>Login</Button>
+                                <Button type='submit' onClick={ (e)=> handleLogin(e)}> 
+                                    {auth.loading ? "Logging in..." : "Login"}
+                                </Button>
                                 <Button
                                     variant='outline'
-                                    type='button'
+                                    type='submit'
                                     onClick={() => {
                                         handleGoogleLogin();
                                     }}
