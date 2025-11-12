@@ -1,17 +1,16 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter, Navigate, useLocation } from "react-router";
- 
-import Login from "../pages/auth/Login";   
+
+import Login from "../pages/auth/Login";
 import Challenges from "../pages/challanges/Challenges";
 import ChallengeDetails from "../pages/challanges/ChallengeDetails";
-import AddChallenges from "../pages/challanges/AddChallenges"; 
+import AddChallenges from "../pages/challanges/AddChallenges";
 import useAuth from "../hooks/useAuth";
 import AuthLayout from "../layouts/AuthLayout";
 import RootLayout from "../layouts/RootLayout";
 import Register from "../pages/auth/Register";
 import Home from "../pages/home/Home";
 import ForgetPasswordPage from "../pages/auth/ForgetPassword";
-
 
 let AuthPageLoader = () => {
     return (
@@ -47,7 +46,6 @@ const PrivetRoute = ({ children }) => {
         : children;
 };
 
-
 const router = createBrowserRouter([
     {
         path: "/",
@@ -55,27 +53,47 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<Home />,
+                element: <Home />,
             },
             {
                 path: "/challenges",
-                element: <Challenges />,
+                element: (
+                    <PrivetRoute>
+                        <Challenges />
+                    </PrivetRoute>
+                ),
             },
             {
                 path: "/challenges/:id",
-                element: <ChallengeDetails />,
+                element: (
+                    <PrivetRoute>
+                        <ChallengeDetails />
+                    </PrivetRoute>
+                ),
             },
             {
                 path: "/challenges/add",
-                element: <AddChallenges />,
+                element: (
+                    <PrivetRoute>
+                        <AddChallenges />
+                    </PrivetRoute>
+                ),
             },
             {
                 path: "/my-activities",
-                element: <div>My Activities Page</div>,
+                element: (
+                    <PrivetRoute>
+                        <div>My Activities Page</div>
+                    </PrivetRoute>
+                ),
             },
             {
                 path: "/my-activities/:id",
-                element: <div>My Activity Details Page</div>,
+                element: (
+                    <PrivetRoute>
+                        <div>My Activity Details Page</div>
+                    </PrivetRoute>
+                ),
             },
         ],
     },
@@ -84,16 +102,28 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [
             {
-                path: "login",
-                element: <Login />,
+                index: true,
+                element: (
+                    <PublicRoute>
+                        <Login />
+                    </PublicRoute>
+                ),
             },
             {
                 path: "register",
-                element: <Register />,
+                element: (
+                    <PublicRoute>
+                        <Register />
+                    </PublicRoute>
+                ),
             },
             {
                 path: "forgot-password",
-                element: <ForgetPasswordPage />,
+                element: (
+                    <PublicRoute>
+                        <ForgetPasswordPage />
+                    </PublicRoute>
+                ),
             },
         ],
     },
@@ -102,6 +132,5 @@ const router = createBrowserRouter([
         element: <div>404 Not Found</div>,
     },
 ]);
-
 
 export default router;
