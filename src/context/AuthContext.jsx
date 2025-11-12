@@ -145,7 +145,7 @@ let AuthProvider = ({ children }) => {
                             position: "bottom-center",
                         });
                         setTimeout(() => {
-                            window.location.href = "/auth/signup";
+                            window.location.href = "/auth/register";
                         }, 2000);
                     } else {
                         sendPasswordResetEmail(auth, email)
