@@ -13,6 +13,7 @@ import {
 
 const Nav = () => {
     const { logout, user } = useAuth();
+    
     return (
         <header className='w-full bg-white border px-12 py-4 flex items-center justify-between'>
             <div>

@@ -26,6 +26,7 @@ let AuthProvider = ({ children }) => {
         setLoading(true);
         let clearEffect = onAuthStateChanged(auth, (user) => {
             setUser(user || null);
+            localStorage.setItem("accessToken", user?.accessToken  );
             setLoading(false);
         });
         return () => {
@@ -38,6 +39,7 @@ let AuthProvider = ({ children }) => {
         loading,
         error,
         setError,
+        accessToken : user?.accessToken,
         googleSignIn: async () => {
             setLoading(true);
             signInWithPopup(auth, googleProvider)
@@ -188,6 +190,8 @@ let AuthProvider = ({ children }) => {
                 });
         },
     };
+
+ 
 
     return (
         <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>

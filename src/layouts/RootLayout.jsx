@@ -27,11 +27,11 @@ function RootLayout() {
                       EcoTrack is a platform that helps you to track your
                       eco-friendly activities.
                       <br />
-                      <section>
+                      <span>
                           <a href=' '>terms and conditions</a>
                           <br />
                           <a href=' '>privacy policy</a>
-                      </section>
+                      </span>
                       <br />
                       © 2025 EcoTrack - All rights reserved
                       <br />

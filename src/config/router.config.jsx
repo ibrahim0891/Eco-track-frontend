@@ -11,6 +11,7 @@ import RootLayout from "../layouts/RootLayout";
 import Register from "../pages/auth/Register";
 import Home from "../pages/home/Home";
 import ForgetPasswordPage from "../pages/auth/ForgetPassword";
+import MyActivities from "@/pages/my-activities/Page";
 
 let AuthPageLoader = () => {
     return (
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path: "/challenges/:id",
+                path: "/challenge/:id",
                 element: (
                     <PrivetRoute>
                         <ChallengeDetails />
@@ -66,7 +67,7 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path: "/challenges/add",
+                path: "/challenge/add",
                 element: (
                     <PrivetRoute>
                         <AddChallenges />
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
                 path: "/my-activities",
                 element: (
                     <PrivetRoute>
-                        <div>My Activities Page</div>
+                        <MyActivities />
                     </PrivetRoute>
                 ),
             },
