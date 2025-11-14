@@ -4,13 +4,11 @@ import axiosInstance from "@/config/axios.config";
 import { auth } from "@/config/firebase.config";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const Challenges = () => {
     const [loading, setLoading] = React.useState(true);
     const [challenges, setChallenges] = React.useState([]);
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         function fetchChallenges() {
@@ -29,23 +27,7 @@ const Challenges = () => {
         fetchChallenges();
     }, []);
 
-    function joinChallenge(challengeId) {
-        axiosInstance
-            .post(`/challenges/join/${challengeId}` , {
-                userId : auth.currentUser.uid
-            })
-            .then((response) => {
-                if(response.data.data == null){
-                    toast.error("You have already joined this challenge.");
-                    return;
-                }
-               toast.success("Successfully joined the challenge!");
-            })
-            .catch((error) => {
-                console.error("Error joining challenge:", error);
-                toast.error("Failed to join the challenge.");
-            });
-    }
+    
     return (
         <div className='p-8'>
             <h1>Challenges</h1>
@@ -59,7 +41,9 @@ const Challenges = () => {
                             <h2 className='text-lg font-semibold mb-2'>{challenge.title}</h2>
                             <p className='text-gray-600'>{challenge.description}</p>
                             <p className='text-sm text-gray-500'>Duration: {challenge.duration} days</p>
-                            <Button className='mt-4 w-full' onClick={() => joinChallenge(challenge._id)}>Join Challenge</Button>
+                            <Link to={`/challenge/${challenge._id}`}>
+                                <Button className='mt-4 w-full'>View Challenge</Button>
+                            </Link>
                         </div>
                     ))}
                 </div>
