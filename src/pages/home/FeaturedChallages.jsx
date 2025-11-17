@@ -19,14 +19,14 @@ const FeauritedChallenge = ({ featuredChallengePromise }) => {
     const featuredChallenges = use(featuredChallengePromise);
     console.log(featuredChallenges);
     return (
-        <div className='w-screen'>
+        <div className=''>
             <Carousel className='relative h-full'>
                 <CarouselContent>
                     {featuredChallenges.map((challenge, index) => (
                         <CarouselItem key={index}>
                             <div
                                 key={challenge.id}
-                                className='relative w-full h-[350px] md:h-[800px]   overflow-hidden text-white'
+                                className='relative  h-[350px] md:h-[800px]   overflow-hidden text-white'
                             >
                                 <img
                                     src={challenge.imageUrl}

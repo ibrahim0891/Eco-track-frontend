@@ -1,3 +1,4 @@
+import { HandFistIcon, SparkleIcon, Trash2Icon } from "lucide-react";
 
 
 export const impacts = [
