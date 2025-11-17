@@ -27,7 +27,7 @@ const Nav = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <header className='w-full bg-white border px-6 py-4 flex items-center justify-between'>
+        <header className='w-full bg-white/50 backdrop-blur-sm container mx-auto   px-6 py-4 flex items-center justify-between sticky top-0'>
             <div>
                 <h1 className='font-semibold tracking-wider text-green-600 flex items-center  gap-2'>
                     <LeafIcon size={20}></LeafIcon>

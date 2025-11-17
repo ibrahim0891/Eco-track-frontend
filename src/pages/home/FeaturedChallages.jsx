@@ -26,7 +26,7 @@ const FeauritedChallenge = ({ featuredChallengePromise }) => {
                         <CarouselItem key={index}>
                             <div
                                 key={challenge.id}
-                                className='relative w-full h-[350px] md:h-[500px]   overflow-hidden text-white'
+                                className='relative w-full h-[350px] md:h-[800px]   overflow-hidden text-white'
                             >
                                 <img
                                     src={challenge.imageUrl}
